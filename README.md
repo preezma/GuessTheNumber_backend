@@ -6,6 +6,8 @@ Guess The Number API
 
 # Description
 
+Player can start a new game to guess a 4 digits code. User has 3 minutes to submit as much numbers as s/he wants.
+In case of correct or wrong guess user can see the result and also the direction for the next guesses.
 ### API Installation and Setup instructions
 
 1. Download and Install Node.js https://nodejs.org/en/

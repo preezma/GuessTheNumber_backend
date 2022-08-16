@@ -1,9 +1,9 @@
 function addMinutes(numOfMinutes, date = new Date()) {
-    date.setMinutes(date.getMinutes() + numOfMinutes);
+  date.setMinutes(date.getMinutes() + numOfMinutes);
 
-    return date;
+  return date;
 }
 const utils = {
-    addMinutes
-}
+  addMinutes
+};
 module.exports = utils;
