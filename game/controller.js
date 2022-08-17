@@ -46,7 +46,10 @@ exports.submitResponse = async (req, res) => {
     if (theGameData.status !== 'inProcess') throw Error('Your round is expired, please start a new game');
     let reply;
     switch (true) {
-      case (new Date(theGameData.endTime.toString()) < new Date(Date.now())): reply = 'Your game is expired,but you can start new round!';
+      case (new Date(theGameData.endTime.toString()) < new Date(Date.now())): reply = {
+        status: 'expired',
+        number
+      };
         await Game.findByIdAndUpdate(id, { status: 'expired' });
         break;
       case (number === theGameData.number): reply = { status: statuses.win };
@@ -55,12 +58,14 @@ exports.submitResponse = async (req, res) => {
         });
         break;
       case (number > theGameData.number): reply = {
-        status: statuses.less
+        status: statuses.less,
+        number
       };
         await Game.findByIdAndUpdate(id, { $push: { trials: number } });
         break;
       case (number < theGameData.number): reply = {
-        status: statuses.greater
+        status: statuses.greater,
+        number
       };
         await Game.findByIdAndUpdate(id, { $push: { trials: number } });
         break;
