@@ -52,7 +52,10 @@ exports.submitResponse = async (req, res) => {
       };
         await Game.findByIdAndUpdate(id, { status: 'expired' });
         break;
-      case (number === theGameData.number): reply = { status: statuses.win };
+      case (number === theGameData.number): reply = {
+        status: statuses.won,
+        number
+      };
         await Game.findByIdAndUpdate(id, {
           status: 'won'
         });
